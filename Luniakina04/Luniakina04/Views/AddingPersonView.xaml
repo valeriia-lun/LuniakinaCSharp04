@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="Luniakina04.Views.AddingPersonView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Luniakina04.Views"
+        mc:Ignorable="d"
+        Height="450" Width="800"  Background="Honeydew">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Name: " Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="17"></TextBlock>
+        <TextBox Grid.Column="1" Grid.Row="0" Margin ="20" Text="{Binding PersonObj.Name, Mode=TwoWay}"></TextBox>
+        <TextBlock Text="Last name: " Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="17"></TextBlock>
+        <TextBox Grid.Column="1" Grid.Row="1" Margin ="20" Text="{Binding PersonObj.Surname, Mode=TwoWay}"></TextBox>
+        <TextBlock Text="E-mail: " Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="17"></TextBlock>
+        <TextBox Grid.Column="1" Grid.Row="2" Margin ="20" Text="{Binding PersonObj.Email, Mode=TwoWay}"></TextBox>
+        <TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="17" Text="Date of birth"/>
+        <DatePicker SelectedDateFormat="Long"  Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" SelectedDate="{Binding PersonObj.Birthday, Mode=TwoWay}" Height="21" Margin="10,40,10,29"></DatePicker>
+
+        <Button Background="Cyan"  Content="Add" FontWeight="ExtraBlack" Margin ="20" Grid.Column="0" Grid.Row="4" Command="{Binding ProceedCommand}"></Button>
+        <Button Background="Cyan" Content="Back" FontWeight="ExtraBlack" Margin ="20" Grid.Column="1" Grid.Row="4" Command="{Binding CancelCommand}"></Button>
+    </Grid>
+</UserControl>

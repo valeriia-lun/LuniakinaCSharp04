@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="Luniakina04.Views.TableView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Luniakina04.Views"
+        mc:Ignorable="d"
+          Height="450" Width="800"  Background="Honeydew" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="110" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Sort by" FontWeight="ExtraBlack"  VerticalAlignment="Center" HorizontalAlignment="Right" />
+            <ComboBox Grid.Column="1" Margin="5" ItemsSource="{Binding SortCasesEnum}"
+                      SelectedIndex="{Binding Sort, Mode=TwoWay}" />
+
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="7" />
+                <ColumnDefinition Width="110" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Background="Cyan" Margin="97,5,-85.8,5" Content="Search " FontWeight="ExtraBlack" Command="{Binding FilterCommand}" Grid.Column="3"></Button>
+            <TextBlock Text="Search in" FontWeight="ExtraBlack"  VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,10,10.4,14" />
+            <ComboBox Grid.Column="2" Margin="5" ItemsSource="{Binding FilterCasesEnum}"
+			          SelectedIndex="{Binding Filter, Mode=TwoWay}" SelectionChanged="ComboBox_SelectionChanged" />
+            <TextBox Grid.Column="3" Margin="5" ToolTip="Що?" Text="{Binding FilterLetters, Mode=TwoWay}"/>
+
+        </Grid>
+        <Grid Grid.Column="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+        </Grid>
+        <DataGrid Name="TableGrid" Margin="10" Grid.ColumnSpan="3" Grid.Row="1" IsReadOnly="True"
+                  SelectedItem="{Binding SelectedPerson, Mode=TwoWay}" SelectionUnit="FullRow"
+                  ItemsSource="{Binding PersonList, Mode=OneWay}" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+                  SelectionMode="Single" CanUserSortColumns="False" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Surname" Binding="{Binding Surname}" />
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}" />
+                <DataGridTextColumn Header="Birth date" Binding="{Binding BirthdayString}" />
+                <DataGridCheckBoxColumn Header="Is adult?" Binding="{Binding IsAdult, Mode=OneTime}" IsReadOnly="False" />
+                <DataGridTextColumn Header="Sun sign" Binding="{Binding SunSign}" />
+                <DataGridTextColumn Header="Chinese sign" Binding="{Binding ChineseSign}" />
+                <DataGridCheckBoxColumn Header="Is birthday today?" Binding="{Binding IsBirthday, Mode=OneWay}"
+                                        IsReadOnly="False" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Background="Cyan" Content="Add" FontWeight="ExtraBlack" Grid.Row="2" Grid.Column="0" Margin="5" Command="{Binding AddPersonCommand}" Click="Button_Click" />
+        <Button Background="Cyan" Content="Edit" FontWeight="ExtraBlack" Grid.Row="2" Grid.Column="1" Margin="5" Command="{Binding EditPersonCommand}" />
+        <Button Background="Cyan" Content="Delete" FontWeight="ExtraBlack" Grid.Row="2" Grid.Column="2" Margin="5"
+                Command="{Binding RemovePersonCommand}" />
+    </Grid>
+    </UserControl>
